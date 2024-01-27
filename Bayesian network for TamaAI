@@ -1,0 +1,64 @@
+from pgmpy.models import BayesianModel
+from pgmpy.factors.discrete import TabularCPD
+
+# Define the Bayesian Network structure
+model = BayesianModel([
+    ('Temperature', 'Hunger'), ('Light', 'Tiredness'), ('Seasonal Changes', 'Mood'),
+    ('Hunger', 'Feeding Response'), ('Illness', 'Health Care Response'),
+    ('Mood', 'Emotional Response'), ('Tiredness', 'Rest Actions'),
+    ('Feeding Response', 'Punctuality'), ('Health Care Response', 'Punctuality'),
+    ('Rest Actions', 'Punctuality'), ('Emotional Response', 'Empathy'),
+    ('Feeding Response', 'Responsibility'), ('Health Care Response', 'Responsibility'),
+    ('Rest Actions', 'Responsibility'), ('Emotional Response', 'Responsibility'),
+    ('Punctuality', 'Pet’s Well-being'), ('Empathy', 'Pet’s Well-being'),
+    ('Responsibility', 'Pet’s Well-being')
+])
+
+# Define CPDs
+cpd_temperature = TabularCPD(variable='Temperature', variable_card=3, values=[[0.3], [0.4], [0.3]])
+cpd_light = TabularCPD(variable='Light', variable_card=2, values=[[0.5], [0.5]])
+cpd_seasonal_changes = TabularCPD(variable='Seasonal Changes', variable_card=4, values=[[0.25], [0.25], [0.25], [0.25]])
+
+cpd_hunger = TabularCPD(variable='Hunger', variable_card=2, 
+                        values=[[0.3, 0.7, 0.5], [0.7, 0.3, 0.5]],
+                        evidence=['Temperature'], evidence_card=[3])
+cpd_illness = TabularCPD(variable='Illness', variable_card=2, values=[[0.2], [0.8]])
+cpd_mood = TabularCPD(variable='Mood', variable_card=3, 
+                      values=[[0.6, 0.4, 0.7, 0.6], [0.1, 0.2, 0.1, 0.1], [0.3, 0.4, 0.2, 0.3]],
+                      evidence=['Seasonal Changes'], evidence_card=[4])
+cpd_tiredness = TabularCPD(variable='Tiredness', variable_card=2, 
+                           values=[[0.4, 0.6], [0.6, 0.4]],
+                           evidence=['Light'], evidence_card=[2])
+
+# Add more CPDs for Children's Responses, Character-Building Outcomes, and Feedback Mechanism...
+
+# CPDs for Children's Responses
+cpd_feeding_response = TabularCPD(variable='Feeding Response', variable_card=3, 
+                                  values=[[0.7, 0.3], [0.2, 0.7], [0.1, 0.0]],
+                                  evidence=['Hunger'], evidence_card=[2])
+
+# ... Similar CPDs for Health Care Response, Emotional Response, Rest Actions
+
+# CPDs for Character-Building Outcomes
+cpd_punctuality = TabularCPD(variable='Punctuality', variable_card=3, 
+                             values=[[0.7, 0.25, 0.05], [0.2, 0.5, 0.3], [0.1, 0.25, 0.65]],
+                             evidence=['Feeding Response', 'Health Care Response', 'Rest Actions'], 
+                             evidence_card=[3, 3, 3])
+
+# ... Similar CPDs for Empathy, Responsibility
+
+# CPD for Pet’s Well-being
+cpd_pet_wellbeing = TabularCPD(variable='Pet’s Well-being', variable_card=3, 
+                               values=[[0.8, 0.15, 0.05], [0.15, 0.7, 0.15], [0.05, 0.15, 0.8]],
+                               evidence=['Punctuality', 'Empathy', 'Responsibility'], 
+                               evidence_card=[3, 3, 3])
+
+# Add the new CPDs to the model
+model.add_cpds(cpd_feeding_response, cpd_punctuality, cpd_pet_wellbeing)
+# ... Add other CPDs similarly
+
+# Validate the model
+assert model.check_model()
+
+# Print the model
+print(model)
