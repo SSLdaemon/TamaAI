@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamaAI — Parent Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="/static/parent.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen">
+            <div class="login-card">
+                <div class="login-logo">🦕</div>
+                <h1>TamaAI</h1>
+                <p class="login-subtitle">Parent Dashboard</p>
+                <p class="login-desc">Monitor your child's pet care patterns and character development.</p>
+                <a href="/auth/google/login" class="login-btn google-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Sign in with Google
+                </a>
+                <button class="login-btn demo-btn" onclick="demoLogin()">
+                    🧪 Demo Login (No Google needed)
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="hidden">
+            <!-- Header -->
+            <header id="dash-header">
+                <div class="header-left">
+                    <span class="header-logo">🦕</span>
+                    <h1>TamaAI Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <img id="user-avatar" src="" alt="" class="avatar hidden">
+                    <span id="user-name"></span>
+                    <a href="/auth/logout" class="logout-btn">Logout</a>
+                </div>
+            </header>
+
+            <!-- Overview Cards -->
+            <section id="overview-cards">
+                <div class="card pet-card">
+                    <div class="card-header">
+                        <h2>🦕 Pet Status</h2>
+                        <span class="status-badge" id="pet-status-badge">Healthy</span>
+                    </div>
+                    <div class="pet-stats-grid">
+                        <div class="mini-stat">
+                            <span class="mini-label">❤️ Health</span>
+                            <div class="mini-bar"><div class="mini-fill health-fill" id="mini-health"></div></div>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-label">🍖 Hunger</span>
+                            <div class="mini-bar"><div class="mini-fill hunger-fill" id="mini-hunger"></div></div>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-label">😊 Mood</span>
+                            <div class="mini-bar"><div class="mini-fill mood-fill" id="mini-mood"></div></div>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-label">⚡ Energy</span>
+                            <div class="mini-bar"><div class="mini-fill energy-fill" id="mini-energy"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card summary-card">
+                    <div class="card-header"><h2>📊 This Week</h2></div>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span class="summary-num" id="week-actions">0</span>
+                            <span class="summary-label">Actions</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-num" id="week-quality">0%</span>
+                            <span class="summary-label">Care Quality</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-num" id="week-meals">0</span>
+                            <span class="summary-label">Meals On Time</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-num" id="week-hospital">0</span>
+                            <span class="summary-label">Hospital Visits</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts -->
+            <section id="charts-section">
+                <div class="card chart-card">
+                    <div class="card-header"><h2>📈 Stats Over Time</h2></div>
+                    <canvas id="stats-chart"></canvas>
+                </div>
+                <div class="card chart-card">
+                    <div class="card-header"><h2>🎯 Character Development</h2></div>
+                    <canvas id="outcomes-chart"></canvas>
+                </div>
+                <div class="card chart-card">
+                    <div class="card-header"><h2>🕐 Activity Heatmap</h2></div>
+                    <canvas id="heatmap-chart"></canvas>
+                </div>
+            </section>
+
+            <!-- Care Report -->
+            <section id="report-section">
+                <div class="card report-card">
+                    <div class="card-header"><h2>📝 Care Report</h2></div>
+                    <div id="report-content">
+                        <p class="loading-text">Loading report...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alerts -->
+            <section id="alerts-section">
+                <div class="card alerts-card">
+                    <div class="card-header">
+                        <h2>🔔 Alerts</h2>
+                        <span class="alert-count" id="alert-count">0</span>
+                    </div>
+                    <div id="alerts-list">
+                        <p class="no-alerts">No alerts — everything looks good!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Back to pet -->
+            <div id="back-to-pet">
+                <a href="/">🦕 Back to Rex</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/parent.js"></script>
+</body>
+</html>

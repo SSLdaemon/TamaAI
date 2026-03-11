@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\rfard\\\\Documents\\\\tamaai\" /s /b)",
+      "Bash(netstat:*)",
+      "Bash(python app.py:*)",
+      "Bash(curl:*)",
+      "Bash(python:*)",
+      "mcp__Windows-MCP__Shell"
+    ]
+  }
+}

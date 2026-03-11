@@ -1,0 +1,468 @@
+/* ═══════════════════════════════════════════════════════════
+   TamaAI v2 — Parent Dashboard Styles
+   Clean, professional, responsive
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+    /* Ocean Depths Theme - Professional Maritime Palette */
+    --primary: #2d8b8b;
+    /* Teal - accents and highlights */
+    --primary-dark: #1a5f5f;
+    /* Deep teal */
+    --accent: #a8dadc;
+    /* Seafoam - secondary accents */
+    --danger: #e74c3c;
+    --bg: #e8f1f2;
+    /* Light ocean background */
+    --card: #f1faee;
+    /* Cream - card backgrounds */
+    --text: #1a2332;
+    /* Deep Navy - primary text */
+    --text-light: #457b9d;
+    /* Ocean blue - secondary text */
+    --border: #a8dadc;
+    /* Seafoam border */
+    --shadow: 0 2px 12px rgba(26, 35, 50, 0.1);
+    --radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ── Login Screen ────────────────────────────────────────── */
+#login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #a8dadc 0%, #e8f1f2 50%, #f1faee 100%);
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-logo {
+    font-size: 64px;
+    margin-bottom: 8px;
+}
+
+.login-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.login-subtitle {
+    font-size: 16px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+}
+
+.login-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    margin-bottom: 12px;
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+}
+
+.google-btn {
+    background: #fff;
+    color: #333;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.google-btn:hover {
+    border-color: #4285F4;
+}
+
+.demo-btn {
+    background: var(--primary);
+    color: #fff;
+}
+
+.demo-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* ── Dashboard ───────────────────────────────────────────── */
+#dashboard {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+#dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo {
+    font-size: 28px;
+}
+
+.header-left h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#user-name {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.logout-btn {
+    color: var(--danger);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--danger);
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #fef0ef;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
+.card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* ── Overview Cards ──────────────────────────────────────── */
+#overview-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    #overview-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.status-badge {
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #e8f5e9;
+    color: var(--primary-dark);
+}
+
+.status-badge.critical {
+    background: #ffebee;
+    color: var(--danger);
+}
+
+.status-badge.hospital {
+    background: #fbe9e7;
+    color: #d84315;
+}
+
+.pet-stats-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.mini-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-label {
+    font-size: 13px;
+    width: 80px;
+    font-weight: 500;
+}
+
+.mini-bar {
+    flex: 1;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.mini-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.health-fill {
+    background: var(--primary);
+}
+
+.hunger-fill {
+    background: var(--accent);
+}
+
+.mood-fill {
+    background: #2196F3;
+}
+
+.energy-fill {
+    background: #FFC107;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-num {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.summary-label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* ── Charts ──────────────────────────────────────────────── */
+#charts-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    #charts-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-card canvas {
+    max-height: 250px;
+    width: 100% !important;
+}
+
+.chart-card:first-child {
+    grid-column: 1 / -1;
+}
+
+/* ── Report ──────────────────────────────────────────────── */
+#report-content {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.report-insight {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--primary);
+    background: #f8faf8;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+}
+
+.report-insight.warning {
+    border-left-color: var(--accent);
+    background: #fffaf0;
+}
+
+.report-insight.danger {
+    border-left-color: var(--danger);
+    background: #fef5f5;
+}
+
+.loading-text {
+    color: var(--text-light);
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ── Alerts ──────────────────────────────────────────────── */
+.alert-count {
+    background: var(--danger);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.alert-count.zero {
+    background: var(--primary);
+}
+
+.no-alerts {
+    text-align: center;
+    color: var(--text-light);
+    padding: 16px;
+    font-size: 14px;
+}
+
+.alert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.alert-item:last-child {
+    border-bottom: none;
+}
+
+.alert-icon {
+    font-size: 18px;
+}
+
+.alert-type {
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.alert-time {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.alert-severity {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.severity-high {
+    background: #ffebee;
+    color: var(--danger);
+}
+
+.severity-med {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.severity-low {
+    background: #e8f5e9;
+    color: var(--primary-dark);
+}
+
+/* ── Back to Pet ─────────────────────────────────────────── */
+#back-to-pet {
+    text-align: center;
+    padding: 20px 0;
+}
+
+#back-to-pet a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 24px;
+    border-radius: 20px;
+    border: 2px solid var(--primary);
+    transition: background 0.2s;
+}
+
+#back-to-pet a:hover {
+    background: #cff4f5;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>TamaAI — Rex the Dino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Sky background -->
+        <div id="sky-bg" class="sky day">
+            <div class="stars-layer" id="stars"></div>
+            <div class="clouds-layer" id="clouds">
+                <div class="cloud c1"></div>
+                <div class="cloud c2"></div>
+                <div class="cloud c3"></div>
+            </div>
+        </div>
+
+        <!-- Time display -->
+        <div id="time-bar">
+            <span id="time-icon">☀️</span>
+            <span id="time-label">Morning</span>
+            <span id="meal-badge" class="hidden">🍖 Meal time!</span>
+        </div>
+
+        <!-- Hospital banner -->
+        <div id="hospital-banner" class="hidden">
+            <div class="hospital-icon">🏥</div>
+            <div class="hospital-text">Rex is in the hospital!</div>
+            <div class="hospital-progress">
+                <div class="hospital-progress-bar" id="hospital-bar"></div>
+            </div>
+            <div class="hospital-visits" id="hospital-visits">Visit 0/4</div>
+        </div>
+
+        <!-- Critical warning -->
+        <div id="critical-banner" class="hidden">
+            <span>🚨 Rex needs help NOW!</span>
+        </div>
+
+        <!-- Pet name & message -->
+        <div id="pet-header">
+            <h1 id="pet-name">Rex</h1>
+            <div id="message-bubble">
+                <p id="message-text">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Dino area -->
+        <div id="dino-stage">
+            <canvas id="particles" width="360" height="300"></canvas>
+            <div id="dino-container">
+                <svg id="dino-svg" viewBox="0 0 190 180" width="200" height="190"></svg>
+            </div>
+            <div id="ground"></div>
+        </div>
+
+        <!-- Stats -->
+        <div id="stats-panel">
+            <div class="stat-row">
+                <span class="stat-icon">❤️</span>
+                <span class="stat-label">Health</span>
+                <div class="stat-bar-track"><div class="stat-bar health-bar" id="bar-health"></div></div>
+                <span class="stat-val" id="val-health">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">🍖</span>
+                <span class="stat-label">Hunger</span>
+                <div class="stat-bar-track"><div class="stat-bar hunger-bar" id="bar-hunger"></div></div>
+                <span class="stat-val" id="val-hunger">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">😊</span>
+                <span class="stat-label">Mood</span>
+                <div class="stat-bar-track"><div class="stat-bar mood-bar" id="bar-mood"></div></div>
+                <span class="stat-val" id="val-mood">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">⚡</span>
+                <span class="stat-label">Energy</span>
+                <div class="stat-bar-track"><div class="stat-bar energy-bar" id="bar-energy"></div></div>
+                <span class="stat-val" id="val-energy">0</span>
+            </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div id="actions">
+            <button class="action-btn feed-btn" data-action="feed" onclick="doAction('feed')">
+                <span class="btn-icon">🍖</span>
+                <span class="btn-label">Feed</span>
+            </button>
+            <button class="action-btn play-btn" data-action="play" onclick="doAction('play')">
+                <span class="btn-icon">🎮</span>
+                <span class="btn-label">Play</span>
+            </button>
+            <button class="action-btn rest-btn" data-action="rest" onclick="doAction('rest')">
+                <span class="btn-icon">😴</span>
+                <span class="btn-label">Rest</span>
+            </button>
+            <button class="action-btn heal-btn" data-action="heal" onclick="doAction('heal')">
+                <span class="btn-icon">💊</span>
+                <span class="btn-label">Heal</span>
+            </button>
+            <button class="action-btn visit-btn" data-action="visit" onclick="doAction('visit')" style="display:none;">
+                <span class="btn-icon">🏥</span>
+                <span class="btn-label">Visit Rex</span>
+            </button>
+        </div>
+
+        <!-- Character development -->
+        <div id="outcomes-panel">
+            <h2>Character Growth</h2>
+            <div class="outcome-row">
+                <span class="outcome-label">💗 Empathy</span>
+                <div class="outcome-bar-track"><div class="outcome-bar empathy-bar" id="bar-empathy"></div></div>
+            </div>
+            <div class="outcome-row">
+                <span class="outcome-label">📋 Responsibility</span>
+                <div class="outcome-bar-track"><div class="outcome-bar responsibility-bar" id="bar-responsibility"></div></div>
+            </div>
+            <div class="outcome-row">
+                <span class="outcome-label">⏰ Punctuality</span>
+                <div class="outcome-bar-track"><div class="outcome-bar punctuality-bar" id="bar-punctuality"></div></div>
+            </div>
+            <div class="outcome-row">
+                <span class="outcome-label">🌟 Wellbeing</span>
+                <div class="outcome-bar-track"><div class="outcome-bar wellbeing-bar" id="bar-wellbeing"></div></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <a href="/parent" id="parent-link">👨‍👩‍👧 Parent Dashboard</a>
+            <button id="reset-btn" onclick="resetPet()">🔄 New Pet</button>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
